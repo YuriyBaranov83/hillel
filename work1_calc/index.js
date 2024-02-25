@@ -6,7 +6,7 @@ if(!(question === 'add' || question === 'sub' || question === 'mult' || question
     const firstNumber = +prompt('please enter first number');
     const secondNumber = +prompt('please enter second number');
 
-    if (typeof firstNumber === 'number' && typeof secondNumber === 'number') {
+    if (firstNumber && secondNumber) {
         if(question === 'add'){
             const add = firstNumber + secondNumber;
             alert(firstNumber + '+' + secondNumber + '=' + add);
