@@ -8,3 +8,4 @@ if(hours > 0){
     alert('next time enter a number');
     location.reload();
 }
+// new
