@@ -1,0 +1,30 @@
+.slider {
+    display: inline-block;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    padding: 40px 80px;
+}
+button {
+    border: 0;
+    padding: 10px 20px;
+    background: rgb(0, 191, 255);
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%)
+}
+.prev {
+    left: 0;
+}
+.next {
+    right: 0;
+}
+img {
+    display: none;
+    width: 200px;
+    height: 200px;
+}
+.active {
+    display: block;
+}
