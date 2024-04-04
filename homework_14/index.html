@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>homework_14</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="index.js" defer></script>
+</head>
+<body>
+    <div class="page">
+        <div class="product__wrapper">
+            <div class="product__item">
+                <img src="images/1.webp" alt="product">
+                <div class="item__summury">
+                    <span>Galaxy 24 ULTRA</span>
+                </div>
+                <button class="item__btn">Купити</button>
+            </div>
+        </div>
+        <form action="" id="form" class="form">
+            <label>
+                Прізвіще та ім'я *
+                <input type="text" name="name_user" placeholder="Прізвіще та ім'я">
+            </label>
+            <div class="city">
+                <span>Оберіть місто *</span>
+                <select name="city" id="city" value="">
+                    <option value=""></option>
+                    <option value="Київ">Київ</option>
+                    <option value="Дніпро">Дніпро</option>
+                    <option value="Львів">Львів</option>
+                    <option value="Одеса">Одеса</option>
+                </select>
+            </div>
+            <div class="department">
+                <span>Оберіть відділення *</span>
+                <select name="department" id="department">
+                    <option value=""></option>
+                    <option value="Нова пошта №1">Нова пошта №1</option>
+                    <option value="Нова пошта №2">Нова пошта №2</option>
+                    <option value="Нова пошта №3">Нова пошта №3</option>
+                </select>
+            </div>
+            <div class="payment">
+                <span>Оберіть спосіб оплати *</span>
+                <label>
+                     <input type="radio" name="payment_method" value="post-payment">
+                     Післяoплатa
+                </label>
+                <label>
+                     <input type="radio" name="payment_method" value="bank-card">
+                     Банківська картка
+                </label>
+            </div>
+            <label>
+                Кількість продукції *
+                <input type="number" name="quantity" min="1">
+            </label>
+            <label>
+                Коментар до замовлення
+                <textarea name="comments" id=""></textarea>
+            </label>
+            <button class="form__btn" type="submit">Замовлення підтверджую</button>
+        </form>
+        <div class="table__wrapp">
+            <table class="table">
+                <thead>
+                    <th>Ключ</th>
+                    <th>значення</th>
+                </thead>
+                <tbody class="tbody"></tbody>
+            </table>
+            <button class="tbody__btn">
+                Підтверджую
+            </button>
+        </div>
+    </div>
+</body>
+</html>
