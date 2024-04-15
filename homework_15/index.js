@@ -7,6 +7,8 @@ const city = document.querySelector('#city');
 const department = document.querySelector('#department');
 const payment = document.querySelector('.payment span');
 const quantity = document.querySelector('input[name="quantity"]');
+const phoneUser = document.querySelector('#phone_user');
+const emailUser = document.querySelector('#email_user');
 
 buy.addEventListener('click', () => {
     formUser.style.display = 'flex';
@@ -77,6 +79,12 @@ function fieldValidation(obj) {
         nameUser.classList.add('invalid__field');
         isValid = false;
     }
+    if(obj.phone_user.length < 1) {
+        phoneUser.classList.add('invalid__field');
+    }
+    if(obj.email_user.length < 1) {
+        emailUser.classList.add('invalid__field');
+    }
     if(obj.city.length < 1) {
         city.classList.add('invalid__field');
         isValid = false;
@@ -96,3 +104,35 @@ function fieldValidation(obj) {
     
     return isValid;
 }
+
+
+
+nameUser.addEventListener('input', function() {
+    const nameError = document.getElementById('name-error');
+    const nameRegex = /^[А-ЯЇЄІA-Z][а-яїєі'a-z]+ [А-ЯЇЄІA-Z][а-яїєі'a-z]+ [А-ЯЇЄІA-Z][а-яїєі'a-z]+$/;
+    if (!nameRegex.test(this.value)) {
+        nameError.textContent = 'Прізвище та ім\'я повинні складатися з трьох слів, кожне з великої літери';
+    } else {
+        nameError.textContent = '';
+    }
+});
+
+phoneUser.addEventListener('input', function() {
+    const phoneError = document.getElementById('phone-error');
+    const phoneRegex = /^[\d()+-]{10,13}$/;
+    if (!phoneRegex.test(this.value)) {
+        phoneError.textContent = 'Неправильний формат номера телефону';
+    } else {
+        phoneError.textContent = '';
+    }
+});
+
+emailUser.addEventListener('input', function() {
+    const emailError = document.getElementById('email-error');
+    const emailRegex = /^[a-zA-Z0-9._+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(this.value)) {
+        emailError.textContent = 'Неправильний формат email';
+    } else {
+        emailError.textContent = '';
+    }
+});

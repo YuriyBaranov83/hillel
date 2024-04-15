@@ -117,3 +117,6 @@ th {
     height: 300px;
     display: block;
 }
+.error-message {
+    color: red;
+}

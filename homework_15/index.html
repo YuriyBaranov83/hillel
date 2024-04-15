@@ -8,7 +8,6 @@
     <script src="index.js" defer></script>
 </head>
 <body>
-    <p>tect</p>
     <div class="page"> 
         <div class="product__wrapper">
             <div class="product__item">
@@ -22,7 +21,18 @@
         <form action="" id="form" class="form">
             <label>
                 Прізвіще та ім'я *
-                <input type="text" name="name_user" placeholder="Прізвіще та ім'я">
+                <input type="text" name="name_user" id="name_user" placeholder="Прізвіще та ім'я">
+                <span class="error-message" id="name-error"></span> <!-- Отображение ошибки валидации -->
+            </label>
+            <label>
+                Телефон *
+                <input type="tel" name="phone_user" id="phone_user" placeholder="Телефон">
+                <span class="error-message" id="phone-error"></span> <!-- Отображение ошибки валидации -->
+            </label>
+            <label>
+                Email *
+                <input type="text" name="email_user" id="email_user" placeholder="Email">
+                <span class="error-message" id="email-error"></span> <!-- Отображение ошибки валидации -->
             </label>
             <div class="city">
                 <span>Оберіть місто *</span>
@@ -68,7 +78,7 @@
             <table class="table">
                 <thead>
                     <th>Ключ</th>
-                    <th>значення</th>
+                    <th>Значення</th>
                 </thead>
                 <tbody class="tbody"></tbody>
             </table>
