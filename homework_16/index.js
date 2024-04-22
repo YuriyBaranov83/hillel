@@ -12,7 +12,11 @@ class Flat {
     } 
 
     addTenant(person) {
-        this.tenants.push(person);
+        if(person instanceof Human) {
+            this.tenants.push(person);
+        } else {
+            console.log('ви не та людина');
+        }
     }
 }
 
@@ -23,10 +27,14 @@ class House {
     }
 
     addFlat(flat) {
-        if (this.flats.length < this.maxFlats) {
-            this.flats.push(flat);
+        if(flat instanceof Flat) {
+            if (this.flats.length < this.maxFlats) {
+                this.flats.push(flat);
+            } else {
+                console.log('Досягнуто максимальну кількість квартир у будинку.');
+            }
         } else {
-            console.log('Досягнуто максимальну кількість квартир у будинку.');
+            console.log('це не квартира');
         }
     }
 }
@@ -40,12 +48,10 @@ const flat1 = new Flat();
 const flat2 = new Flat();
 const flat3 = new Flat();
 
-
 flat1.addTenant(person1);
 flat1.addTenant(person2);
 flat2.addTenant(person3);
 flat3.addTenant(person4);
-
 
 const house1 = new House(3);
 const house2 = new House(2);
