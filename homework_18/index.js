@@ -1,17 +1,14 @@
 'use strict'
 
 const citySelect = document.getElementById('citySelect');
+const select = document.querySelector('option[value="select"]');
 
 citySelect.addEventListener('change', () => {
     
     const selectedCity = citySelect.value;
     const apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${selectedCity}&units=metric&APPID=5d066958a60d315387d9492393935c19`
-    if (selectedCity === 'select') {
-        const optionToRemove = document.querySelector(`#citySelect option[value="${selectedCity}"]`);
-        if (optionToRemove) {
-            optionToRemove.remove();
-        }
-    }
+    
+    select.remove();
 
     fetch(apiUrl)
         .then(response => response.json())
