@@ -42,7 +42,6 @@ async function getId() {
 			const commentsForPost = element.body;
         	const commentElement = document.createElement('i');
 			body.appendChild(commentElement);
-            commentElement.classList.add('italic');
 			commentElement.textContent = `${commentsForPost}`;
 		});
 
@@ -51,7 +50,7 @@ async function getId() {
         button.textContent = 'Show comments';
 
         button.addEventListener('click', function(){
-			const italic = document.querySelectorAll('.italic');
+			const italic = document.querySelectorAll('i');
 			italic.forEach(function(element) {
 				element.classList.add('active');
 			});
