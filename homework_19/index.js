@@ -11,7 +11,7 @@ async function getId() {
     const idPost = await fetch("https://jsonplaceholder.typicode.com/posts");
     const idPostData = await idPost.json();
 
-    const idComments = await fetch('https://jsonplaceholde.typicode.com/comments');
+    const idComments = await fetch('https://jsonplaceholder.typicode.com/comments');
     const idCommentsData = await idComments.json();
 
     inpSearch.addEventListener("change", function () {
@@ -19,7 +19,6 @@ async function getId() {
       const body = document.querySelector('body');
       const titleId = document.createElement('h1');
       const bodyId = document.createElement('p');
-      const button = document.createElement('button');
       const active = document.querySelectorAll('.active');
 
       active.forEach(function(element) {
@@ -36,23 +35,29 @@ async function getId() {
         titleId.textContent = `${foundPost.title}`;
         bodyId.textContent = `${foundPost.body}`;
 
+		const foundComments = idCommentsData.filter(comments => comments.postId === foundPost.id);
         const button = document.createElement('button');
         
-        body.appendChild(button);
+		foundComments.forEach(function(element){
+			const commentsForPost = element.body;
+        	const commentElement = document.createElement('i');
+			body.appendChild(commentElement);
+            commentElement.classList.add('italic');
+			commentElement.textContent = `${commentsForPost}`;
+		});
+
+		body.appendChild(button);
         button.classList.add('active');
         button.textContent = 'Show comments';
 
         button.addEventListener('click', function(){
-          const foundComments = idCommentsData.filter(comments => comments.postId === foundPost.id);
-          
-          foundComments.forEach(function(element){
-            const commentsForPost = element.body;
-            const commentElement = document.createElement('i');
-            body.appendChild(commentElement);
-            commentElement.classList.add('active');
-            commentElement.textContent = `${commentsForPost}`;
-          });
-        });
+			const italic = document.querySelectorAll('.italic');
+			italic.forEach(function(element) {
+				element.classList.add('active');
+			});
+			button.style.display = 'none';
+		});
+
       } else {
         const div = document.createElement('div');
         div.classList.add('active');
