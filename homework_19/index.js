@@ -1,67 +1,55 @@
-// Використовуючи API https://jsonplaceholder.typicode.com/ зробити пошук поста за ід.
-// Ід має бути введений в інпут (валідація: ід від 1 до 100) Якщо знайдено пост,
-// то вивести на сторінку блок з постом і зробити кнопку для отримання комкоментарів до посту.
-// Зробити завдання використовуючи проміси, перехопити помилки.
-"use strict";
-
-const inpSearch = document.querySelector(".input");
+const inpSearch = document.querySelector('.input');
 
 async function getId() {
   try {
-    const idPost = await fetch("https://jsonplaceholder.typicode.com/posts");
-    const idPostData = await idPost.json();
-
-    const idComments = await fetch('https://jsonplaceholder.typicode.com/comments');
-    const idCommentsData = await idComments.json();
-
-    inpSearch.addEventListener("change", function () {
+    inpSearch.addEventListener('change', async function () {
       const inputValue = parseInt(inpSearch.value);
       const body = document.querySelector('body');
-      const titleId = document.createElement('h1');
-      const bodyId = document.createElement('p');
       const active = document.querySelectorAll('.active');
 
-      active.forEach(function(element) {
+      active.forEach(element => {
         element.remove();
       });
 
-      if (inpSearch.value > 0 && inpSearch.value <= 100) {
-        const foundPost = idPostData.find(post => post.id === inputValue);
-        
+      if (inputValue > 0 && inputValue <= 100) {
+        const postResponse = await fetch(`https://jsonplaceholder.typicode.com/posts/${inputValue}`);
+        const foundPost = await postResponse.json();
+
+        const titleId = document.createElement('h1');
+        titleId.textContent = foundPost.title;
         body.appendChild(titleId);
         titleId.classList.add('active');
+
+        const bodyId = document.createElement('p');
+        bodyId.textContent = foundPost.body;
         body.appendChild(bodyId);
         bodyId.classList.add('active');
-        titleId.textContent = `${foundPost.title}`;
-        bodyId.textContent = `${foundPost.body}`;
 
-		const foundComments = idCommentsData.filter(comments => comments.postId === foundPost.id);
-        const button = document.createElement('button');
+        const commentsResponse = await fetch(`https://jsonplaceholder.typicode.com/comments?postId=${inputValue}`);
+        const foundComments = await commentsResponse.json();
         
-		foundComments.forEach(function(element){
-			const commentsForPost = element.body;
-        	const commentElement = document.createElement('i');
-			body.appendChild(commentElement);
-			commentElement.textContent = `${commentsForPost}`;
-		});
+        foundComments.forEach(comment => {
+          const commentElement = document.createElement('i');
+          commentElement.textContent = comment.body;
+          body.appendChild(commentElement);
+        });
 
-		body.appendChild(button);
-        button.classList.add('active');
+        const button = document.createElement('button');
         button.textContent = 'Show comments';
+        body.appendChild(button);
 
-        button.addEventListener('click', function(){
-			const italic = document.querySelectorAll('i');
-			italic.forEach(function(element) {
-				element.classList.add('active');
-			});
-			button.style.display = 'none';
-		});
+        button.addEventListener('click', function () {
+          const italicElements = document.querySelectorAll('i');
+          italicElements.forEach(element => {
+            element.classList.add('active');
+          });
+          button.style.display = 'none';
+        });
 
       } else {
         const div = document.createElement('div');
-        div.classList.add('active');
-        body.appendChild(div);
         div.textContent = 'Please enter only numbers from 1 to 100';
+        body.appendChild(div);
       }
     });
   } catch (error) {
@@ -69,4 +57,4 @@ async function getId() {
   }
 }
 
-getId()
+getId();
