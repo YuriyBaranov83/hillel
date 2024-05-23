@@ -1,0 +1,1 @@
+export const btn = () => console.log('hi');
