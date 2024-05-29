@@ -1,0 +1,11 @@
+.aside {
+    flex-basis: calc(20% - 50px);
+    background: orange;
+}
+
+.aside .text {
+    text-align: center;
+    font-size: 14px;
+    color: rgb(90, 81, 81);
+    padding: 100px 10px;
+}
