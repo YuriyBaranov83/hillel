@@ -1,0 +1,10 @@
+.label-login{
+    position: relative;
+}
+.label-login>input{
+    border: 0;
+    background: rgb(217, 217, 217);
+    padding: 20px;
+    display: block;
+    width: 90%;
+}

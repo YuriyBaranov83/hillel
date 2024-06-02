@@ -1,0 +1,9 @@
+.button-login {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 29px;
+    color: #fff;
+    background:  rgb(68, 178, 111);
+    padding: 14px 0;
+    width: 100%;
+}
