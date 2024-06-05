@@ -1,9 +1,9 @@
 import "./Index.css";
 
-const ButtonLogin = ({ type, ...props }) => {
+const ButtonLogin = ({ type, children, ...props }) => {
   return (
     <button className="button-login" type={type}>
-      Login
+      {children}
     </button>
   );
 };

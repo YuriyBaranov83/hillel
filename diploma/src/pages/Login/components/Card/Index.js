@@ -22,7 +22,7 @@ const Card = () => {
         </LoginInput>
       </Row>
       <Row>
-        <ButtonLogin type="submit"/>
+        <ButtonLogin type="submit">Login</ButtonLogin>
       </Row>
     </form>
   );
