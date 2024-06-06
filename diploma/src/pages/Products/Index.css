@@ -14,7 +14,7 @@
 }
 
 .products .wrapper .button-login {
-    background: rgb(209, 209, 209);
+    background: #fff;
     color: #05BC52;
     width: 180px;
     font-size: 16px;
@@ -27,6 +27,8 @@
 
 .products .wrapper .button-login svg {
     color: black;
+    width: 25px;
+    height: 25px;
 }
 
 .products .title {
@@ -34,13 +36,16 @@
 }
 
 .products-table {
-    margin: 0 auto;
+    margin: 75px auto 0;
     text-align: center;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border-collapse: collapse;
 }
-.products-table thead tr{
+
+.products-table thead tr {
     background: rgb(14, 200, 111);
 }
+
 .products-table th {
     color: rgb(114, 105, 105);
     font-family: Inter;
@@ -51,6 +56,7 @@
     position: relative;
 
 }
+
 .products-table th svg {
     width: 20px;
     height: 20px;
@@ -58,7 +64,36 @@
     top: 50%;
     transform: translateY(-50%);
 }
-.products-table tr {
+
+.products-table>tr {
     background: rgb(217, 217, 217);
     color: #fff;
+    padding: 10px 20px;
+}
+
+.products-table>tr:hover {
+    background: rgb(60, 215, 140);
+}
+
+.products-table>tr:hover>td {
+    color: rgb(165, 143, 143);
+}
+
+.products-table>tr>td {
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+    padding: 10px 20px;
+}
+
+td.edit svg {
+    color: black;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+td.edit svg:last-child {
+    margin-left: 10px;
 }

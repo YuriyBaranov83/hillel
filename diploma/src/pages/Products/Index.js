@@ -4,12 +4,13 @@ import { GrUserManager } from "react-icons/gr";
 import { GoPlus } from "react-icons/go";
 import { PiArrowsDownUpThin } from "react-icons/pi";
 import { BsFillPencilFill } from "react-icons/bs";
-import { MdDelete } from "react-icons/md";
+import { RiDeleteBin4Fill } from "react-icons/ri";
 import Row from "../../components/Row/Index";
 import Wrapper from "../../components/Wrapper/Index";
 import ButtonLogin from "../../components/ButtonLogin/Index";
 import Title from "../../components/Title/Index";
 import Table from "./components/Table/Index";
+
 const Products = () => {
   return (
     <div className="products">
@@ -49,6 +50,7 @@ const Products = () => {
               Price (₴)
               <PiArrowsDownUpThin />
             </th>
+            <th></th>
           </tr>
         </thead>
         <tr>
@@ -57,9 +59,9 @@ const Products = () => {
           <td>Lenovo Y50-70</td>
           <td>5</td>
           <td>25,000.00</td>
-          <td>
+          <td className="edit">
             <BsFillPencilFill />
-            <MdDelete />
+            <RiDeleteBin4Fill />
           </td>
         </tr>
         <tr>
@@ -68,9 +70,9 @@ const Products = () => {
           <td>Nike M Nk Df Acd21</td>
           <td>22</td>
           <td>4,000.00</td>
-          <td>
+          <td className="edit">
             <BsFillPencilFill />
-            <MdDelete />
+            <RiDeleteBin4Fill />
           </td>
         </tr>
         <tr>
@@ -79,9 +81,9 @@ const Products = () => {
           <td>CERSANIT MITO 17</td>
           <td>1337</td>
           <td>5,000.00</td>
-          <td>
+          <td className="edit">
             <BsFillPencilFill />
-            <MdDelete />
+            <RiDeleteBin4Fill />
           </td>
         </tr>
       </Table>
