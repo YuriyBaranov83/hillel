@@ -57,7 +57,7 @@ const Products = () => {
           </tr>
         </thead>
         <tbody>
-          {productsList.map((element,index) => {
+          {productsList.map((element) => {
             return (
               <tr key={element.id}>
                 <td>{element.id}</td>
