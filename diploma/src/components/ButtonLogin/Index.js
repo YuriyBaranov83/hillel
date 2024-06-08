@@ -1,4 +1,4 @@
-import "./Index.css";
+import "./index.css";
 
 const ButtonLogin = ({ type, children, ...props }) => {
   return (

@@ -27,3 +27,8 @@
     top: 50%;
     transform: translateY(-50%);
 }
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

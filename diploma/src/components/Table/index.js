@@ -1,4 +1,4 @@
-import "./Index.css";
+import "./index.css";
 
 const Table = (props) => {
   return (

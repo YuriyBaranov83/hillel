@@ -1,6 +1,6 @@
-import "./Index.css";
+import "./index.css";
 
-const LoginInput = ({ type, placeholder, children, ...props }) => {
+const LoginInput = ({ type, placeholder, children}) => {
   return (
     <label className="label-login">
       <input type={type} placeholder={placeholder} />

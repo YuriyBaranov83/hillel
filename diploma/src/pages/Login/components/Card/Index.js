@@ -1,29 +1,28 @@
 import { IoEye } from "react-icons/io5";
 import { IoEyeOff } from "react-icons/io5";
-import "./Index.css";
+import "./index.css";
 import { ReactComponent as Logo } from "../../../../assets/login-logo.svg";
-import LoginInput from "../../../../components/InputLogin/Index";
-import ButtonLogin from "../../../../components/ButtonLogin/Index";
-import Row from "../../../../components/Row/Index";
+import LoginInput from "../../../../components/InputLogin";
+import ButtonLogin from "../../../../components/ButtonLogin";
 
 const Card = () => {
   return (
     <form className="form-login">
-      <Row>
+      <div className="row">
         <Logo />
-      </Row>
-      <Row>
+      </div>
+      <div className="row">
         <LoginInput type="text" placeholder="User Name"/>
-      </Row>
-      <Row>
+      </div>
+      <div className="row">
         <LoginInput type="password" placeholder="Password">
           <IoEye className="eye-on" />
           <IoEyeOff className="eye-off" />
         </LoginInput>
-      </Row>
-      <Row>
+      </div>
+      <div className="row">
         <ButtonLogin type="submit">Login</ButtonLogin>
-      </Row>
+      </div>
     </form>
   );
 };
