@@ -4,7 +4,11 @@
 .label-login>input{
     border: 0;
     background: rgb(217, 217, 217);
-    padding: 20px;
     display: block;
-    width: 90%;
+    width: 100%;
+    padding: 20px 0;
+}
+.label-login>input::placeholder {
+    color: rgb(68, 178, 111);
+    padding-left: 20px;
 }

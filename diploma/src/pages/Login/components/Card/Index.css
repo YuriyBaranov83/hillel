@@ -26,6 +26,7 @@
     right: 16px;
     top: 50%;
     transform: translateY(-50%);
+    cursor: pointer;
 }
 .wrapper {
     display: flex;

@@ -33,7 +33,7 @@ const Table = ({ classNameCustom, productsList }) => {
       <tbody>
         {productsList.map((element) => (
           <tr key={element.id}>
-            <td>{element.id}</td>
+            <td>{element.id}</td>  
             <td>{element.category}</td>
             <td>{element.name}</td>
             <td>{element.quantity}</td>
