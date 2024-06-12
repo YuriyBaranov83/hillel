@@ -1,8 +1,9 @@
-.proucts-preveiw{
+.products-preview {
     background: #44B26F;
     position: relative;
     padding: 122px 0;
 }
+
 .logo-prod {
     position: absolute;
     top: 20px;
