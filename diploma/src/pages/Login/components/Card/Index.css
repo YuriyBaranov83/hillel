@@ -1,4 +1,4 @@
-.form-login{
+.form-login {
     background: rgb(245, 245, 245);
     position: absolute;
     top: 50%;
@@ -6,18 +6,19 @@
     transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     gap: 50px;
     padding: 110px;
 }
-.form-login .row{
-    width: 100%;
-    overflow: hidden;
+
+.form-login .row {
+    position: relative;
+    width: 240px;
 }
-.form-login .label-login{
+
+.form-login .label-login {
     display: block;
 }
+
 .form-login .row label svg {
     color: rgb(68, 178, 111);
     width: 40px;
@@ -28,8 +29,22 @@
     transform: translateY(-50%);
     cursor: pointer;
 }
+
 .wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+
+.form-login .error-input {
+    border: 1px solid red;
+}
+
+.error {
+    color: red;
+    position: absolute;
+    left: 0;
+    bottom: -20px;
+    font-size: 12px;
+}
+

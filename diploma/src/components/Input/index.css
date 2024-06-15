@@ -1,0 +1,25 @@
+.label-login {
+    position: relative;
+}
+
+.label-login>input {
+    border: 0;
+    background: rgb(217, 217, 217);
+    display: block;
+    padding: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    width: 82%;
+}
+
+.label-login>input::placeholder {
+    color: rgb(68, 178, 111);
+}
+.label-login .form-button {
+    color: aliceblue;
+    background: #44B26F;
+    font-size: 24px;
+    font-weight: 600;
+    width: 100%;
+    padding: 15px 0;
+}
