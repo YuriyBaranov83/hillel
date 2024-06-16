@@ -1,17 +1,37 @@
+import React, { useState, useEffect } from "react";
 import "./index.css";
 import { ReactComponent as LogoOther } from "../../assets/logo.svg";
 import { GrUserManager } from "react-icons/gr";
-import { GoPlus } from "react-icons/go";
-import ButtonLogin from "../../components/ButtonLogin";
+import { FaPlus } from "react-icons/fa";
 import Table from "../../components/Table";
+import Button from "../../components/Button";
 
+const fetchProducts = async () => {
+  try {
+    const response = await fetch(
+      "https://665f28621e9017dc16f31a57.mockapi.io/api/products"
+    );
+    if (!response.ok) {
+      throw new Error(`Помилка ${response.statusText}`);
+    }
+    const productsList = await response.json();
+    return productsList;
+  } catch (error) {
+    console.error("Error", error);
+  }
+};
 
 const Products = () => {
-  const productsList = [
-    { id: 0, category: "PC", name: "Lenovo Y-50", quantity: 5, price: 25000.0 },
-    { id: 1, category: "Clothes", name: "Nike M Nk Df Acd21", quantity: 22, price: 4000.0 },
-    { id: 2, category: "Plumbing", name: "CERSANIT MITO 17", quantity: 555, price: 5000.0 },
-  ];
+  const [productsList, setProductsList] = useState([]);
+
+  useEffect(() => {
+    const getProducts = async () => {
+      const products = await fetchProducts();
+      setProductsList(products);
+    };
+
+    getProducts();
+  }, []);
 
   return (
     <div className="products">
@@ -19,14 +39,14 @@ const Products = () => {
         <LogoOther />
       </div>
       <div className="wrapper">
-        <ButtonLogin type="button">
+        <Button type="button" className="button-products">
           <GrUserManager />
           Preview
-        </ButtonLogin>
-        <ButtonLogin type="button">
-          <GoPlus />
+        </Button>
+        <Button type="button" className="button-products">
+          <FaPlus />
           Add product
-        </ButtonLogin>
+        </Button>
       </div>
       <h1 className="title">Products</h1>
       <Table classNameCustom="products-table" productsList={productsList} />
