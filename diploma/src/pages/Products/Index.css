@@ -3,21 +3,25 @@
     background: #44B26F;
     padding-bottom: 50px;
 }
-.title{
+
+.title {
     text-align: center;
     color: #fff;
     font-size: 64px;
     font-weight: 700;
     line-height: 77px;
 }
+
 .products>.row>svg {
     padding: 20px 0 0 30px;
 }
+
 .wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+
 .products .wrapper {
     padding: 0 70px;
     margin-top: 30px;
