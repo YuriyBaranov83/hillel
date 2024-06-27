@@ -6,21 +6,6 @@ import { FaPlus } from "react-icons/fa";
 import Table from "../../components/Table";
 import Button from "../../components/Button";
 
-const fetchProducts = async () => {
-  try {
-    const response = await fetch(
-      "https://665f28621e9017dc16f31a57.mockapi.io/api/products"
-    );
-    if (!response.ok) {
-      throw new Error(`Помилка ${response.statusText}`);
-    }
-    const productsList = await response.json();
-    return productsList;
-  } catch (error) {
-    console.error("Error", error);
-  }
-};
-
 const Products = () => {
   const [productsList, setProductsList] = useState([]);
 
@@ -32,6 +17,21 @@ const Products = () => {
 
     getProducts();
   }, []);
+  
+  const fetchProducts = async () => {
+    try {
+      const response = await fetch(
+        "https://665f28621e9017dc16f31a57.mockapi.io/api/products"
+      );
+      if (!response.ok) {
+        throw new Error(`Помилка ${response.statusText}`);
+      }
+      const productsList = await response.json();
+      return productsList;
+    } catch (error) {
+      console.error("Error", error);
+    }
+  };
 
   return (
     <div className="products">
