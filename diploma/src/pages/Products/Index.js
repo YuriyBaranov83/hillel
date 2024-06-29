@@ -5,9 +5,12 @@ import { GrUserManager } from "react-icons/gr";
 import { FaPlus } from "react-icons/fa";
 import Table from "../../components/Table";
 import Button from "../../components/Button";
+import { API_URL } from "../../constans";
+import { useNavigate } from "react-router-dom";
 
 const Products = () => {
   const [productsList, setProductsList] = useState([]);
+  const navigate= useNavigate();
 
   useEffect(() => {
     const getProducts = async () => {
@@ -20,7 +23,7 @@ const Products = () => {
   const fetchProducts = async () => {
     try {
       const response = await fetch(
-        "https://665f28621e9017dc16f31a57.mockapi.io/api/products"
+        `${API_URL}/api/products`
       );
       if (!response.ok) {
         throw new Error(`Помилка ${response.statusText}`);
@@ -30,6 +33,10 @@ const Products = () => {
     } catch (error) {
       console.error("Error", error);
     }
+   
+  };
+  const handlePreview = () => {
+    navigate('/products-preview');
   };
 
   return (
@@ -38,7 +45,7 @@ const Products = () => {
         <LogoOther />
       </div>
       <div className="wrapper">
-        <Button type="button" className="button-products">
+        <Button type="button" className="button-products" onClick={handlePreview}>
           <GrUserManager />
           Preview
         </Button>

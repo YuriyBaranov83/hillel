@@ -4,6 +4,7 @@ import { IoEyeOff } from "react-icons/io5";
 import "./index.css";
 import { ReactComponent as Logo } from "../../../../assets/login-logo.svg";
 import Input from "../../../../components/Input";
+import { useNavigate } from "react-router-dom";
 
 const passwordLogin = {
   login: "admin",
@@ -16,6 +17,7 @@ const Card = () => {
   const [passwordInput, setPasswordInput] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [textError, setTextError] = useState("");
+  const navigate = useNavigate();
 
   const handleClick = () => {
     setIsVisible((prevIsVisible) => !prevIsVisible);
@@ -62,6 +64,7 @@ const Card = () => {
     if (!hasError) {
       const myToken = "my-token";
       localStorage.setItem("token", myToken);
+      navigate('/products');
     }
   };
 

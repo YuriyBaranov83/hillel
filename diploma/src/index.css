@@ -18,3 +18,19 @@ img {
   max-height: 100%;
   vertical-align: middle;
 }
+.error-page {
+  background: rgb(107, 226, 107);
+  height: 100vh;
+  color: azure;
+  text-align: center;
+  padding-top: 100px;
+}
+.error-page span{
+  display: block;
+}
+.error-page span:first-child {
+  font-size: 200px;
+}
+.error-page span:last-child {
+  font-size: 100px;
+}

@@ -1,9 +1,9 @@
 import "./index.css";
 import { BsCart4 } from "react-icons/bs";
 
-const ProductCard = ({ product, readyTodelivery, quantityProd }) => {
+const ProductCard = ({ product, readyTodelivery, quantityProd, onClick }) => {
   return (
-      <div className="product-card" key={product.id}>
+      <div className="product-card" key={product.id} onClick={onClick}>
         <div className="image-prod">
           <img src={product.image} alt="" />
         </div>
