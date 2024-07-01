@@ -76,3 +76,7 @@
     width: 28px;
     height: 28px;
 }
+.product-card.not-ready .delivery-prod span,
+.product-card.not-ready .delivery-prod svg {
+    color: rgb(116, 115, 115);
+}
