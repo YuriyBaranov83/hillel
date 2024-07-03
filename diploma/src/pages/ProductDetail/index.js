@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { API_URL } from "../../constans";
 import Spiner from "../../components/Spiner";
 import { ReactComponent as LogoOther } from "../../assets/logo.svg";
-import Button from "../../components/Button";
+import CustomButton from "../../components/CustomButton";
 import { TiArrowBack } from "react-icons/ti";
 import { MdOutlineCloudDone } from "react-icons/md";
 
@@ -49,9 +49,9 @@ const ProductDetail = () => {
       </div>
       <div className="product-detail-wrapper">
         <div className="product-detail-title">
-          <Button onClick={handlePreviewClick}> 
+          <CustomButton onClick={handlePreviewClick}> 
             <TiArrowBack />
-          </Button>
+          </CustomButton>
           <h1>{product.name}{product.color}</h1>
         </div>
         <div className="product-detail-block">

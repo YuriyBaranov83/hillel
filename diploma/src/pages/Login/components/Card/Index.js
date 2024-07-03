@@ -70,10 +70,10 @@ const Card = () => {
 
   return (
     <form className="form-login" onSubmit={handleSubmit}>
-      <div className="row">
+      <div className="row-row">
         <Logo />
       </div>
-      <div className="row">
+      <div className="row-row">
         <Input
           type="text"
           placeholder="User Name"
@@ -84,7 +84,7 @@ const Card = () => {
         />
         {textError && <span className="error">{textError}</span>}
       </div>
-      <div className="row">
+      <div className="row-row">
         <Input
           type={isVisible ? "text" : "password"}
           placeholder="Password"
@@ -101,7 +101,7 @@ const Card = () => {
         </Input>
         {passwordError && <span className="error">{passwordError}</span>}
       </div>
-      <div className="row">
+      <div className="row-row">
         <Input type="submit" value="Login" className="form-button"/>
       </div>
     </form>

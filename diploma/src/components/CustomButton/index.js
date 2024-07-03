@@ -1,6 +1,6 @@
 import "./index.css";
 
-const Button = ({ className, type, children, onClick }) => {
+const CustomButton = ({ className, type, children, onClick }) => {
   return (
     <button className={className} type={type} onClick={onClick}>
       {children}
@@ -8,4 +8,4 @@ const Button = ({ className, type, children, onClick }) => {
   );
 };
 
-export default Button;
+export default CustomButton;

@@ -4,13 +4,13 @@ import { ReactComponent as LogoOther } from "../../assets/logo.svg";
 import { GrUserManager } from "react-icons/gr";
 import { FaPlus } from "react-icons/fa";
 import Table from "../../components/Table";
-import Button from "../../components/Button";
+import CustomButton from "../../components/CustomButton";
 import { API_URL } from "../../constans";
 import { useNavigate } from "react-router-dom";
 
 const Products = () => {
   const [productsList, setProductsList] = useState([]);
-  const navigate= useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getProducts = async () => {
@@ -19,12 +19,10 @@ const Products = () => {
     };
     getProducts();
   }, []);
-  
+
   const fetchProducts = async () => {
     try {
-      const response = await fetch(
-        `${API_URL}/api/products`
-      );
+      const response = await fetch(`${API_URL}/api/products`);
       if (!response.ok) {
         throw new Error(`Помилка ${response.statusText}`);
       }
@@ -33,29 +31,53 @@ const Products = () => {
     } catch (error) {
       console.error("Error", error);
     }
-   
   };
+
   const handlePreview = () => {
-    navigate('/products-preview');
+    navigate("/products-preview");
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      const response = await fetch(`${API_URL}/api/products/${id}`, {
+        method: 'DELETE',
+      });
+      if (!response.ok) {
+        throw new Error(`Помилка при видаленні: ${response.statusText}`);
+      }
+      setProductsList((prevProductsList) => 
+        prevProductsList.filter((product) => product.id !== id)
+      );
+    } catch (error) {
+      console.error("Error deleting product:", error);
+    }
   };
 
   return (
     <div className="products">
-      <div className="row">
+      <div className="row-row">
         <LogoOther />
       </div>
       <div className="wrapper">
-        <Button type="button" className="button-products" onClick={handlePreview}>
+        <CustomButton
+          type="button"
+          className="button-products"
+          onClick={handlePreview}
+        >
           <GrUserManager />
           Preview
-        </Button>
-        <Button type="button" className="button-products">
+        </CustomButton>
+        <CustomButton type="button" className="button-products">
           <FaPlus />
           Add product
-        </Button>
+        </CustomButton>
       </div>
       <h1 className="title">Products</h1>
-      <Table classNameCustom="products-table" productsList={productsList} />
+      <Table 
+        classNameCustom="products-table" 
+        productsList={productsList} 
+        onDelete={handleDelete}
+      />
     </div>
   );
 };

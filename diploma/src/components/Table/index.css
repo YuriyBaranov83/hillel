@@ -1,0 +1,12 @@
+.cancel-delete,
+.submit-delete {
+    background: rgb(216, 213, 213);
+    padding: 7px 30px 7px 30px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.submit-delete {
+    background: rgb(251, 0, 0);
+}
