@@ -2,24 +2,8 @@ import "./index.css";
 import { PiArrowsDownUpThin } from "react-icons/pi";
 import { BsFillPencilFill } from "react-icons/bs";
 import { RiDeleteBin4Fill } from "react-icons/ri";
-import { useState } from "react";
-import ModalDelete from "../ModalDelete";
 
-const Table = ({ classNameCustom, productsList, onDelete }) => {
-  const [show, setShow] = useState(false);
-  const [currentId, setCurrentId] = useState(null);
-
-  const handleClose = () => setShow(false);
-  const handleShow = (id) => {
-    setCurrentId(id);
-    setShow(true);
-  };
-
-  const handleDelete = () => {
-    onDelete(currentId);
-    handleClose();
-  };
-
+const Table = ({ classNameCustom, productsList, onDelete, onEdit }) => {
   return (
     <table className={classNameCustom}>
       <thead>
@@ -51,17 +35,12 @@ const Table = ({ classNameCustom, productsList, onDelete }) => {
             <td>{element.quantity}</td>
             <td>{element.price}</td>
             <td className="edit">
-              <BsFillPencilFill />
-              <RiDeleteBin4Fill onClick={() => handleShow(element.id)} />
+              <BsFillPencilFill onClick={() => onEdit(element.id)} />
+              <RiDeleteBin4Fill onClick={() => onDelete(element.id)} />
             </td>
           </tr>
         ))}
       </tbody>
-      <ModalDelete
-        show={show}
-        handleClose={handleClose}
-        handleDelete={handleDelete}
-      />
     </table>
   );
 };
