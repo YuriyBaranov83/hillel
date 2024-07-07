@@ -3,8 +3,7 @@ import { PiArrowsDownUpThin } from "react-icons/pi";
 import { BsFillPencilFill } from "react-icons/bs";
 import { RiDeleteBin4Fill } from "react-icons/ri";
 import { useState } from "react";
-import Modal from "react-bootstrap/Modal";
-import CustomButton from "../CustomButton";
+import ModalDelete from "../ModalDelete";
 
 const Table = ({ classNameCustom, productsList, onDelete }) => {
   const [show, setShow] = useState(false);
@@ -58,22 +57,11 @@ const Table = ({ classNameCustom, productsList, onDelete }) => {
           </tr>
         ))}
       </tbody>
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Прийняти видалення</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          Ви впевнені що хочете видалити цей продукт?
-        </Modal.Body>
-        <Modal.Footer>
-          <CustomButton className="cancel-delete" onClick={handleClose}>
-            Cancel
-          </CustomButton>
-          <CustomButton className="submit-delete" onClick={handleDelete}>
-            Delete
-          </CustomButton>
-        </Modal.Footer>
-      </Modal>
+      <ModalDelete
+        show={show}
+        handleClose={handleClose}
+        handleDelete={handleDelete}
+      />
     </table>
   );
 };

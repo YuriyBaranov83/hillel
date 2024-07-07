@@ -1,13 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
 body {
   font-family: "Inter", sans-serif;
   margin: 0;
   padding: 0;
 }
+
 button {
   cursor: pointer;
   border: 0;
 }
+
 h1 {
   margin: 0;
   padding: 0;
@@ -18,6 +21,7 @@ img {
   max-height: 100%;
   vertical-align: middle;
 }
+
 .error-page {
   background: rgb(107, 226, 107);
   height: 100vh;
@@ -25,12 +29,22 @@ img {
   text-align: center;
   padding-top: 100px;
 }
-.error-page span{
+
+.error-page span {
   display: block;
 }
+
 .error-page span:first-child {
   font-size: 200px;
 }
+
 .error-page span:last-child {
   font-size: 100px;
+}
+
+.modal-body {
+  color: #05BC52;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: left;
 }
