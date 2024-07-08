@@ -16,6 +16,7 @@ const Products = () => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [currentId, setCurrentId] = useState(null);
+  const [modalMode, setModalMode] = useState('Add'); // Добавлено новое состояние для режима модального окна
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,7 +32,7 @@ const Products = () => {
       const productsList = await response.json();
       setProductsList(productsList);
     } catch (error) {
-      console.error("Error fetching products:", error);
+      console.error("Ошибка при получении продуктов:", error);
     }
   };
 
@@ -49,11 +50,15 @@ const Products = () => {
       }
       await getProducts();
     } catch (error) {
-      console.error("Error deleting product:", error);
+      console.error("Ошибка при удалении продукта:", error);
     }
   };
 
-  const handleShowEditModal = () => setShowEditModal(true);
+  const handleShowEditModal = () => {
+    setModalMode('Add');
+    setShowEditModal(true);
+  };
+
   const handleCloseEditModal = () => setShowEditModal(false);
 
   const handleShowDeleteModal = (id) => {
@@ -69,7 +74,9 @@ const Products = () => {
   };
 
   const handleEdit = (id) => {
-    console.log(`редагувати ID ${id}`);
+    console.log(`Редактировать ID ${id}`);
+    setModalMode('Edit');
+    setCurrentId(id);
     setShowEditModal(true);
   };
 
@@ -112,7 +119,7 @@ const Products = () => {
       <ModalEdit
         show={showEditModal}
         handleClose={handleCloseEditModal}
-        title="Add Product"
+        title={modalMode === 'Add' ? 'Add Product' : 'Edit Product'}
       >
         <ModalForm
           onSubmit={handleFormSubmit}
