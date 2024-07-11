@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./index.css";
 import { ReactComponent as LogoOther } from "../../assets/logo.svg";
 import { GrUserManager } from "react-icons/gr";
@@ -7,16 +7,18 @@ import Table from "../../components/Table";
 import CustomButton from "../../components/CustomButton";
 import { API_URL } from "../../constans";
 import { useNavigate } from "react-router-dom";
-import ModalEdit from "../../components/ModalEdit";
+import Modal from "../../components/Modal";
 import ModalDelete from "../../components/ModalDelete";
-import ModalForm from "../../components/ModalForm";
+import Form from "../../components/Form";
+import Spinner from "../../components/Spinner";
 
 const Products = () => {
   const [productsList, setProductsList] = useState([]);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [currentId, setCurrentId] = useState(null);
-  const [modalMode, setModalMode] = useState('Add'); // Добавлено новое состояние для режима модального окна
+  const [currentProduct, setCurrentProduct] = useState(null);
+  const [modalMode, setModalMode] = useState('Add');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,15 +26,18 @@ const Products = () => {
   }, []);
 
   const getProducts = async () => {
+    setLoading(true);
     try {
       const response = await fetch(`${API_URL}/api/products`);
       if (!response.ok) {
-        throw new Error(`Ошибка: ${response.statusText}`);
+        throw new Error(`Error: ${response.statusText}`);
       }
       const productsList = await response.json();
       setProductsList(productsList);
     } catch (error) {
-      console.error("Ошибка при получении продуктов:", error);
+      console.error("Error fetching products:", error);
+    } finally {
+      setLoading(false); 
     }
   };
 
@@ -41,49 +46,92 @@ const Products = () => {
   };
 
   const handleDelete = async (id) => {
+    setLoading(true); 
     try {
       const response = await fetch(`${API_URL}/api/products/${id}`, {
         method: "DELETE",
       });
       if (!response.ok) {
-        throw new Error(`Ошибка при удалении: ${response.statusText}`);
+        throw new Error(`Error deleting: ${response.statusText}`);
       }
       await getProducts();
     } catch (error) {
-      console.error("Ошибка при удалении продукта:", error);
+      console.error("Error deleting product:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
-  const handleShowEditModal = () => {
+  const handleShowAddModal = () => {
     setModalMode('Add');
+    setCurrentProduct(null);
     setShowEditModal(true);
+  };
+
+  const handleEdit = async (id) => {
+    setLoading(true);
+    try {
+      const response = await fetch(`${API_URL}/api/products/${id}`);
+      if (!response.ok) {
+        throw new Error(`Error fetching product: ${response.statusText}`);
+      }
+      const product = await response.json();
+      setCurrentProduct(product);
+      setModalMode('Edit');
+      setShowEditModal(true);
+    } catch (error) {
+      console.error("Error fetching product:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleCloseEditModal = () => setShowEditModal(false);
 
+  const handleFormSubmit = async (values, { setSubmitting }) => {
+    setLoading(true); 
+    try {
+      const method = modalMode === 'Add' ? 'POST' : 'PUT';
+      const url = modalMode === 'Add' ? `${API_URL}/api/products` : `${API_URL}/api/products/${currentProduct.id}`;
+      
+      const response = await fetch(url, {
+        method: method,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+      if (!response.ok) {
+        throw new Error(`Error ${modalMode === 'Add' ? 'adding' : 'updating'} product: ${response.statusText}`);
+      }
+      await getProducts();
+      setSubmitting(false);
+      handleCloseEditModal();
+    } catch (error) {
+      console.error(`Error ${modalMode === 'Add' ? 'adding' : 'updating'} product:`, error);
+    } finally {
+      setLoading(false); 
+      setSubmitting(false);
+    }
+  };
+
   const handleShowDeleteModal = (id) => {
-    setCurrentId(id);
+    setCurrentProduct(id);
     setShowDeleteModal(true);
   };
 
   const handleCloseDeleteModal = () => setShowDeleteModal(false);
 
-  const handleConfirmDelete = () => {
-    handleDelete(currentId);
-    handleCloseDeleteModal();
-  };
-
-  const handleEdit = (id) => {
-    console.log(`Редактировать ID ${id}`);
-    setModalMode('Edit');
-    setCurrentId(id);
-    setShowEditModal(true);
-  };
-
-  const handleFormSubmit = (values, { setSubmitting }) => {
-    console.log('Form values:', values);
-    setSubmitting(false);
-    handleCloseEditModal();
+  const handleConfirmDelete = async () => {
+    setLoading(true);
+    try {
+      await handleDelete(currentProduct);
+    } catch (error) {
+      console.error("Error deleting product:", error);
+    } finally {
+      setLoading(false);
+      handleCloseDeleteModal();
+    }
   };
 
   return (
@@ -103,7 +151,7 @@ const Products = () => {
         <CustomButton
           type="button"
           className="button-products"
-          onClick={handleShowEditModal}
+          onClick={handleShowAddModal}
         >
           <FaPlus />
           Add product
@@ -116,21 +164,30 @@ const Products = () => {
         onDelete={handleShowDeleteModal}
         onEdit={handleEdit} 
       />
-      <ModalEdit
+      <Modal
+        className="modal-window"
         show={showEditModal}
         handleClose={handleCloseEditModal}
         title={modalMode === 'Add' ? 'Add Product' : 'Edit Product'}
       >
-        <ModalForm
+        <Form
+          initialValues={currentProduct || {
+            category: "",
+            name: "",
+            quantity: "",
+            price: "",
+            description: "",
+          }}
           onSubmit={handleFormSubmit}
           onCancel={handleCloseEditModal}
         />
-      </ModalEdit>
+      </Modal>
       <ModalDelete
         show={showDeleteModal}
         handleClose={handleCloseDeleteModal}
         handleDelete={handleConfirmDelete}
       />
+      {loading && <Spinner />}
     </div>
   );
 };

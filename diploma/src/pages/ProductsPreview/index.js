@@ -3,8 +3,6 @@ import { ReactComponent as LogoProd } from "../../assets/logo.svg";
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { API_URL } from "../../constans";
-
-
 import "./index.css";
 
 const ProductsPreview = () => {

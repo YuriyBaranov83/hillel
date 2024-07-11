@@ -1,10 +1,10 @@
 import "./index.css";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 import { API_URL } from "../../constans";
-import Spiner from "../../components/Spiner";
+import Spinner from "../../components/Spinner";
 import { ReactComponent as LogoOther } from "../../assets/logo.svg";
 import CustomButton from "../../components/CustomButton";
 import { TiArrowBack } from "react-icons/ti";
@@ -34,7 +34,7 @@ const ProductDetail = () => {
   }, [productId]);
 
   if (!product) {
-    return <Spiner />;
+    return <Spinner />;
   }
 
   const handlePreviewClick = () => {
