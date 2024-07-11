@@ -9,10 +9,10 @@ import PrivateRoute from "./privateRoute";
 const Router = () => (
   <BrowserRouter>
     <Routes>
-    <Route path="/" element={<Navigate to="/login" replace />} />
-    <Route path="/login" element={<Login />} />
+      <Route path="/" element={<Navigate to="/login" replace />} />
+      <Route path="/login" element={<Login />} />
 
-      <Route element={<PrivateRoute/>}>
+      <Route element={<PrivateRoute />}>
         <Route path="/products" element={<Products />} />
         <Route path="/products-preview" element={<ProductsPreview />} />
         <Route path="/product-detail/:productId" element={<ProductDetail />} />

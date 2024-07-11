@@ -17,7 +17,7 @@ const Products = () => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [currentProduct, setCurrentProduct] = useState(null);
-  const [modalMode, setModalMode] = useState('Add');
+  const [modalMode, setModalMode] = useState("Add");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -37,7 +37,7 @@ const Products = () => {
     } catch (error) {
       console.error("Error fetching products:", error);
     } finally {
-      setLoading(false); 
+      setLoading(false);
     }
   };
 
@@ -46,7 +46,7 @@ const Products = () => {
   };
 
   const handleDelete = async (id) => {
-    setLoading(true); 
+    setLoading(true);
     try {
       const response = await fetch(`${API_URL}/api/products/${id}`, {
         method: "DELETE",
@@ -63,7 +63,7 @@ const Products = () => {
   };
 
   const handleShowAddModal = () => {
-    setModalMode('Add');
+    setModalMode("Add");
     setCurrentProduct(null);
     setShowEditModal(true);
   };
@@ -77,7 +77,7 @@ const Products = () => {
       }
       const product = await response.json();
       setCurrentProduct(product);
-      setModalMode('Edit');
+      setModalMode("Edit");
       setShowEditModal(true);
     } catch (error) {
       console.error("Error fetching product:", error);
@@ -89,11 +89,14 @@ const Products = () => {
   const handleCloseEditModal = () => setShowEditModal(false);
 
   const handleFormSubmit = async (values, { setSubmitting }) => {
-    setLoading(true); 
+    setLoading(true);
     try {
-      const method = modalMode === 'Add' ? 'POST' : 'PUT';
-      const url = modalMode === 'Add' ? `${API_URL}/api/products` : `${API_URL}/api/products/${currentProduct.id}`;
-      
+      const method = modalMode === "Add" ? "POST" : "PUT";
+      const url =
+        modalMode === "Add"
+          ? `${API_URL}/api/products`
+          : `${API_URL}/api/products/${currentProduct.id}`;
+
       const response = await fetch(url, {
         method: method,
         headers: {
@@ -102,15 +105,22 @@ const Products = () => {
         body: JSON.stringify(values),
       });
       if (!response.ok) {
-        throw new Error(`Error ${modalMode === 'Add' ? 'adding' : 'updating'} product: ${response.statusText}`);
+        throw new Error(
+          `Error ${modalMode === "Add" ? "adding" : "updating"} product: ${
+            response.statusText
+          }`
+        );
       }
       await getProducts();
       setSubmitting(false);
       handleCloseEditModal();
     } catch (error) {
-      console.error(`Error ${modalMode === 'Add' ? 'adding' : 'updating'} product:`, error);
+      console.error(
+        `Error ${modalMode === "Add" ? "adding" : "updating"} product:`,
+        error
+      );
     } finally {
-      setLoading(false); 
+      setLoading(false);
       setSubmitting(false);
     }
   };
@@ -162,22 +172,24 @@ const Products = () => {
         classNameCustom="products-table"
         productsList={productsList}
         onDelete={handleShowDeleteModal}
-        onEdit={handleEdit} 
+        onEdit={handleEdit}
       />
       <Modal
         className="modal-window"
         show={showEditModal}
         handleClose={handleCloseEditModal}
-        title={modalMode === 'Add' ? 'Add Product' : 'Edit Product'}
+        title={modalMode === "Add" ? "Add Product" : "Edit Product"}
       >
         <Form
-          initialValues={currentProduct || {
-            category: "",
-            name: "",
-            quantity: "",
-            price: "",
-            description: "",
-          }}
+          initialValues={
+            currentProduct || {
+              category: "",
+              name: "",
+              quantity: "",
+              price: "",
+              description: "",
+            }
+          }
           onSubmit={handleFormSubmit}
           onCancel={handleCloseEditModal}
         />

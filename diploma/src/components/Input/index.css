@@ -15,6 +15,7 @@
 .label-login>input::placeholder {
     color: rgb(68, 178, 111);
 }
+
 .label-login .form-button {
     color: aliceblue;
     background: #44B26F;

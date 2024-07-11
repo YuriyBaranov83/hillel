@@ -64,7 +64,7 @@ const Card = () => {
     if (!hasError) {
       const myToken = "my-token";
       localStorage.setItem("token", myToken);
-      navigate('/products');
+      navigate("/products");
     }
   };
 
@@ -102,7 +102,7 @@ const Card = () => {
         {passwordError && <span className="error">{passwordError}</span>}
       </div>
       <div className="row-row">
-        <Input type="submit" value="Login" className="form-button"/>
+        <Input type="submit" value="Login" className="form-button" />
       </div>
     </form>
   );

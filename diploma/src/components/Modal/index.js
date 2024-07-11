@@ -1,8 +1,8 @@
-import { Modal as ModalBootstrap } from 'react-bootstrap';
+import { Modal as ModalBootstrap } from "react-bootstrap";
 
-const Modal = ({ show, handleClose, children, title , className}) => {
+const Modal = ({ show, handleClose, children, title, className }) => {
   return (
-    <ModalBootstrap show={show} onHide={handleClose} className={className}> 
+    <ModalBootstrap show={show} onHide={handleClose} className={className}>
       <ModalBootstrap.Header closeButton>
         <ModalBootstrap.Title>{title}</ModalBootstrap.Title>
       </ModalBootstrap.Header>

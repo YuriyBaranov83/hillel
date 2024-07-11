@@ -10,12 +10,15 @@
     letter-spacing: 0%;
     text-align: left;
 }
+
 .modal-window .form-group {
     position: relative;
 }
+
 .modal-window .form-group:not(:first-child) {
     margin-top: 20px;
 }
+
 .modal-window .error-message {
     position: absolute;
     left: 0;
@@ -23,9 +26,11 @@
     color: red;
     font-size: 12px;
 }
-.modal-window .error-message ~ .form-control{
+
+.modal-window .error-message~.form-control {
     border: 1px solid red;
 }
+
 .modal-window .form-group>label {
     color: rgb(255, 255, 255);
     font-size: 14px;

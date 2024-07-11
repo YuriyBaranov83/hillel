@@ -9,7 +9,6 @@ const ProductsPreview = () => {
   const navigate = useNavigate();
   const [productPreview, setProductPreview] = useState([]);
 
-  
   useEffect(() => {
     const getProducts = async () => {
       const products = await fetchProducts();
@@ -20,9 +19,7 @@ const ProductsPreview = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch(
-        `${API_URL}/api/products`
-      );
+      const response = await fetch(`${API_URL}/api/products`);
       if (!response.ok) {
         throw new Error(`Помилка ${response.statusText}`);
       }
@@ -31,7 +28,6 @@ const ProductsPreview = () => {
     } catch (error) {
       console.error("Error", error);
     }
-   
   };
 
   const handleProductClick = (id) => {
@@ -43,16 +39,20 @@ const ProductsPreview = () => {
       <LogoProd className="logo-prod" />
       <div className="product-card-wrapper">
         {productPreview.map((product) => (
-          
-            <ProductCard 
-              key={product.id} 
-              onClick={() => handleProductClick(product.id)}
-              product={product}
-              readyTodelivery={product.delivery ? "Готовий до відправки" : "Не готовий до відправки"}
-              quantityProd={"Кількість: "}
-              className={product.delivery ? "product-card" : "product-card not-ready"}
-            />
-          
+          <ProductCard
+            key={product.id}
+            onClick={() => handleProductClick(product.id)}
+            product={product}
+            readyTodelivery={
+              product.delivery
+                ? "Готовий до відправки"
+                : "Не готовий до відправки"
+            }
+            quantityProd={"Кількість: "}
+            className={
+              product.delivery ? "product-card" : "product-card not-ready"
+            }
+          />
         ))}
       </div>
     </div>

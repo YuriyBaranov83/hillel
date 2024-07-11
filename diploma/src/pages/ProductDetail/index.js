@@ -10,7 +10,6 @@ import CustomButton from "../../components/CustomButton";
 import { TiArrowBack } from "react-icons/ti";
 import { MdOutlineCloudDone } from "react-icons/md";
 
-
 const ProductDetail = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState();
@@ -41,7 +40,6 @@ const ProductDetail = () => {
     navigate(`/products-preview`);
   };
 
-
   return (
     <div className="product-detail">
       <div className="product-detail-logo">
@@ -49,27 +47,40 @@ const ProductDetail = () => {
       </div>
       <div className="product-detail-wrapper">
         <div className="product-detail-title">
-          <CustomButton onClick={handlePreviewClick}> 
+          <CustomButton onClick={handlePreviewClick}>
             <TiArrowBack />
           </CustomButton>
-          <h1>{product.name}{product.color}</h1>
+          <h1>
+            {product.name}
+            {product.color}
+          </h1>
         </div>
         <div className="product-detail-block">
           <div className="product-detail-image">
-            <img src={product.image} alt={`Product: ${product.name}`}/>
+            <img src={product.image} alt={`Product: ${product.name}`} />
           </div>
           <div className="product-detail-summary">
-            <div className={`availability-block ${product.quantity > 0 ? "available" : "not-available"}`}> 
+            <div
+              className={`availability-block ${
+                product.quantity > 0 ? "available" : "not-available"
+              }`}
+            >
               <MdOutlineCloudDone />
               {product.quantity > 0 ? "Є в наявності" : "Нема в наявності"}
             </div>
             <div className="product-detail-price">{product.price}₴</div>
-            <div className="product-detail-quantity">Кількість: {product.quantity}</div>
+            <div className="product-detail-quantity">
+              Кількість: {product.quantity}
+            </div>
           </div>
         </div>
         <div className="product-detail-seo">
           <h2>
-            Опис <span>{product.name}{product.color}</span>
+            Опис{" "}
+            <span>
+              {product.name}
+              {product.color}
+            </span>
           </h2>
           <div>{product.description}</div>
         </div>
